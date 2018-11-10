@@ -67,14 +67,12 @@ const addButton = function(event) {
   // here is where I need to add a validation agaisnt validationList array as well as first convert entry to all caps prior to matching
   //convert "stock-input" to all CAPITAL letters
 const capitalStock = stock.toUpperCase();
-console.log(stock);
-console.log(capitalStock);
 
 if (  ! stockList.includes(capitalStock) && (validationList.includes(capitalStock))) {
-  alert("  yes that one is in the validaiton Array  " + capitalStock);
+  alert("  Yes that stock is available from IEXTrading to be added =  " + capitalStock);
   stockList.push(capitalStock);
 } else {
-  alert(" That one is not the validation array  " + capitalStock);
+  alert(" Sorry - That stock is a duplicate, or is not available via IEXTrading  " + capitalStock);
 }
   
   // The stock from the textbox is then added to our array
@@ -106,7 +104,6 @@ $('.card-body').empty();
     method: 'GET'
   }).then(function(response) {
 
-console.log(response);
     // Creating a div to hold the stock
     const stockDiv = $('<div>').addClass('stock');
 
@@ -153,9 +150,9 @@ $.ajax({
   method: 'GET'
 }).then(function(response2) {
 
-console.log(response2);
+// get length of the list of articles available from IEXTrading
 const arrayLength = (response2.length);
-console.log(arrayLength);
+//Loop over the array and append each article to the article class div
 for (i=0; i<arrayLength; i++) {
 
     const companyNews = response2[i].summary;
